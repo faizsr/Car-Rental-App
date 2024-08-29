@@ -1,4 +1,7 @@
-import 'package:car_rental_app/src/feature/product/presentation/views/cars_list_page.dart';
+import 'package:car_rental_app/src/config/constants/app_colors.dart';
+import 'package:car_rental_app/src/config/constants/strings.dart';
+import 'package:car_rental_app/src/config/constants/system_style.dart';
+import 'package:car_rental_app/src/feature/rental/presentation/views/cars_list_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,9 +13,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    systemStyle();
+    return MaterialApp(
       title: 'Car Rentel App',
-      home: CarsListPage(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: montserrat,
+        scaffoldBackgroundColor: AppColors.lTan,
+      ),
+      home: const CarsListPage(),
     );
   }
 }
