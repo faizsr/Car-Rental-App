@@ -25,7 +25,7 @@ class CarsListPage extends StatelessWidget {
             carsListWidget(),
           ],
         ),
-        floatingActionButton: postNewRentalBtn(),
+        floatingActionButton: postNewRentalBtn(context),
       ),
     );
   }
@@ -41,25 +41,19 @@ class CarsListPage extends StatelessWidget {
     );
   }
 
-  FloatingActionButton postNewRentalBtn() {
+  Widget postNewRentalBtn(context) {
     return FloatingActionButton.extended(
       backgroundColor: AppColors.lDarkPurple,
       elevation: 0,
-      onPressed: () {},
-      label: Text(
-        'POST NEW RENTAL?',
-        style: AppTextstyles.exSmTeritiary600,
-      ),
+      onPressed: () => Navigator.pushNamed(context, '/new-rental'),
+      label: Text('POST NEW RENTAL?', style: AppTextstyles.exSmTeritiary600),
     );
   }
 
   Padding subHeading(String text) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 10),
-      child: Text(
-        text,
-        style: AppTextstyles.sm600,
-      ),
+      child: Text(text, style: AppTextstyles.sm600),
     );
   }
 }

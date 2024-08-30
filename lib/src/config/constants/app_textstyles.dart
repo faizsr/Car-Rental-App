@@ -7,6 +7,12 @@ class AppTextstyles {
     fontWeight: FontWeight.w500,
   );
 
+  static TextStyle md500 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: AppColors.lDarkPurple,
+  );
+
   static TextStyle md600 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
@@ -14,6 +20,11 @@ class AppTextstyles {
   );
 
   static const TextStyle sm600 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+  
+  static const TextStyle sm500 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );

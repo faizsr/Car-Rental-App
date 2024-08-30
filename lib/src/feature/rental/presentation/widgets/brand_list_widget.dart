@@ -1,4 +1,5 @@
 import 'package:car_rental_app/src/config/constants/app_colors.dart';
+import 'package:car_rental_app/src/config/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 class BrandListWidget extends StatefulWidget {
@@ -53,19 +54,3 @@ class _BrandListWidgetState extends State<BrandListWidget> {
     );
   }
 }
-
-List<String> brands = [
-  'ALL',
-  'BMW',
-  'PORSCHE',
-  'AUDI',
-  'SKODA',
-  'MERCEDEZ',
-  'SUZUKI',
-  'LAMBORGHINI',
-  'MAHINDRA',
-  'TESLA',
-  'TATA',
-  'VOLKSWAGEN',
-  'ASTON MARTIN'
-];

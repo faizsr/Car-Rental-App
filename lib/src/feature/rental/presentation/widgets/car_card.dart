@@ -20,7 +20,7 @@ class CarCard extends StatelessWidget {
           Container(
             height: 200,
             decoration: BoxDecoration(
-              color: AppColors.lLightYellow,
+              color: AppColors.lGray.withOpacity(0.05),
               image: const DecorationImage(
                 image: NetworkImage(
                   'https://files.porsche.com/filestore/galleryimagerwd/multimedia/none/jdp-2016-982-718-bo-gallery-exterior-01/zoom2/a4eb987d-c173-11ec-80ef-005056bbdc38;sJ;twebp/porsche-zoom2.webp',
