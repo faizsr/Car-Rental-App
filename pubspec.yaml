@@ -44,6 +44,7 @@ dependencies:
   image_picker_platform_interface: ^2.10.0
   image_picker_android: ^0.8.12+13
   get_it: ^7.7.0
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_test:

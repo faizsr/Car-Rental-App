@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RentalItemEntity {
   String id;
   final List<XFile?> imageFiles;
-  List<String>? imageUrls;
+  List<String> imageUrls;
+  Timestamp? timestamp;
   final String brand;
   final String carName;
   final String year;
@@ -16,6 +18,7 @@ class RentalItemEntity {
     this.id = '',
     this.imageFiles = const [],
     this.imageUrls = const [],
+    this.timestamp,
     required this.brand,
     required this.carName,
     required this.year,

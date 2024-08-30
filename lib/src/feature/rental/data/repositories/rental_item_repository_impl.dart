@@ -11,4 +11,9 @@ class RentalItemRepositoryImpl implements RentalItemRepository {
   Future<void> addNewRentalItem(RentalItemEntity rentalItem) async {
     await rentalItemDataSource.addNewRentalItem(rentalItem);
   }
+
+  @override
+  Stream<List<RentalItemEntity>> getAllRentals() {
+    return rentalItemDataSource.getAllRentals();
+  }
 }

@@ -48,9 +48,31 @@ class RentalItemDataSourceImpl implements RentalItemDataSource {
     RentalItemModel rentalItemModel = RentalItemMapper.mapToModel(rentalItem);
     rentalItemModel.id = docRef.id;
     rentalItemModel.imageUrls = imageUrls;
+    rentalItemModel.timestamp = Timestamp.now();
 
     await docRef.set(rentalItemModel.toMap());
 
     log('Success');
+  }
+
+  @override
+  Stream<List<RentalItemEntity>> getAllRentals() {
+    try {
+      final data = storeInstance.collection('rentals').orderBy("timestamp",descending: true).snapshots().map(
+        (snapshot) {
+          return snapshot.docs.map(
+            (doc) {
+              final data = doc.data();
+              final rentalItemModel = RentalItemModel.fromJson(data);
+              return RentalItemMapper.mapToEntity(rentalItemModel);
+            },
+          ).toList();
+        },
+      );
+      return data;
+    } catch (e) {
+      log('On Error: $e');
+      return const Stream.empty();
+    }
   }
 }

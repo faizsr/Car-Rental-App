@@ -4,6 +4,7 @@ import 'package:car_rental_app/src/feature/rental/data/data_sources/remote/renta
 import 'package:car_rental_app/src/feature/rental/data/repositories/rental_item_repository_impl.dart';
 import 'package:car_rental_app/src/feature/rental/domain/repositories/rental_item_repository.dart';
 import 'package:car_rental_app/src/feature/rental/domain/usecases/add_new_rental_usecase.dart';
+import 'package:car_rental_app/src/feature/rental/domain/usecases/get_all_rentals_usecase.dart';
 import 'package:car_rental_app/src/feature/rental/presentation/controllers/image_picker_controller.dart';
 import 'package:car_rental_app/src/feature/rental/presentation/controllers/rental_item_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -38,6 +39,7 @@ Future<void> init() async {
   getIt.registerFactory<RentalItemController>(
     () => RentalItemController(
       addNewRentalUsecase: getIt.call(),
+      getAllRentalsUsecase: getIt.call(),
     ),
   );
   getIt.registerFactory<ImagePickerController>(
@@ -49,6 +51,9 @@ Future<void> init() async {
   // ---------------------- Use Cases ----------------------
   getIt.registerLazySingleton<AddNewRentalUsecase>(
     () => AddNewRentalUsecase(rentalItemRepository: getIt.call()),
+  );
+  getIt.registerLazySingleton<GetAllRentalsUsecase>(
+    () => GetAllRentalsUsecase(rentalItemRepository: getIt.call()),
   );
 
   // ---------------------- Repository ----------------------

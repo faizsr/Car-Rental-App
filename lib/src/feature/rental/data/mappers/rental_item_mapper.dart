@@ -14,6 +14,7 @@ class RentalItemMapper {
       year: model.year,
       imageFiles: model.imageFiles,
       imageUrls: model.imageUrls,
+      timestamp: model.timestamp,
     );
   }
 
@@ -29,6 +30,7 @@ class RentalItemMapper {
       year: entity.year,
       imageFiles: entity.imageFiles,
       imageUrls: entity.imageUrls,
+      timestamp: entity.timestamp,
     );
   }
 }

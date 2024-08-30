@@ -14,9 +14,11 @@ class ImagePickerController extends ChangeNotifier {
     int limit = 5 - imageFileList.length;
     List<XFile> selectedImages = [];
     if (limit != 1) {
-      selectedImages = await imagePicker.pickMultiImage(limit: limit);
+      selectedImages =
+          await imagePicker.pickMultiImage(limit: limit, imageQuality: 50);
     } else {
-      var image = await imagePicker.pickImage(source: ImageSource.gallery);
+      var image = await imagePicker.pickImage(
+          source: ImageSource.gallery, imageQuality: 50);
       if (image != null) selectedImages.add(image);
     }
     if (selectedImages.isNotEmpty) {
@@ -30,6 +32,7 @@ class ImagePickerController extends ChangeNotifier {
     imageFileList.remove(file);
     notifyListeners();
   }
+
   void clearSelectedImages() {
     imageFileList.clear();
     notifyListeners();

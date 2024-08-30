@@ -32,6 +32,7 @@ class _PostNewRentalPageState extends State<PostNewRentalPage> {
 
   @override
   Widget build(BuildContext context) {
+    final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return PopScope(
       onPopInvokedWithResult: (didPop, result) {
         context.read<ImagePickerController>().clearSelectedImages();
@@ -84,7 +85,7 @@ class _PostNewRentalPageState extends State<PostNewRentalPage> {
                         heading1: 'Fuel Type',
                         hintText1: 'Eg: Petrol',
                         controller1: fuelController,
-                        hintText2: 'Eg: Manuel',
+                        hintText2: 'Eg: Manual',
                         heading2: 'Transmission',
                         controller2: transmissionController,
                       ),
@@ -104,19 +105,21 @@ class _PostNewRentalPageState extends State<PostNewRentalPage> {
               ),
             ],
           ),
-          floatingActionButton: Container(
-            margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-            child: CustomFilledButton(
-              text: 'DONE',
-              onPressed: onDonePressed,
-            ),
-          ),
+          floatingActionButton: showFab
+              ? Container(
+                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: CustomFilledButton(
+                    text: 'DONE',
+                    onPressed: onDonePressed,
+                  ),
+                )
+              : null,
         ),
       ),
     );
   }
 
-  void onDonePressed() {
+  void onDonePressed() async {
     List<XFile?> images = context.read<ImagePickerController>().imageFileList;
     if (formkey.currentState!.validate() && images.isNotEmpty) {
       var rentalItem = RentalItemEntity(
@@ -130,7 +133,8 @@ class _PostNewRentalPageState extends State<PostNewRentalPage> {
         imageFiles: images,
       );
 
-      context.read<RentalItemController>().addNewRentalItem(rentalItem);
+      await context.read<RentalItemController>().addNewRentalItem(rentalItem);
+      if (mounted) Navigator.pop(context);
     }
   }
 

@@ -5,6 +5,7 @@ class RentalItemModel extends RentalItemEntity {
     super.id,
     super.imageFiles,
     super.imageUrls,
+    super.timestamp,
     required super.brand,
     required super.carName,
     required super.year,
@@ -25,7 +26,10 @@ class RentalItemModel extends RentalItemEntity {
       fuel: map['fuel'],
       transmission: map['transmission'],
       price: map['price'],
-      imageUrls: map['image_urls'],
+      imageUrls: (map['image_urls'] as List<dynamic>)
+          .map((item) => item as String)
+          .toList(),
+      timestamp: map['timestamp'],
     );
   }
 
@@ -40,6 +44,7 @@ class RentalItemModel extends RentalItemEntity {
       'transmission': transmission,
       'price': price,
       'image_urls': imageUrls,
+      'timestamp': timestamp,
     };
   }
 }

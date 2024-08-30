@@ -1,9 +1,13 @@
 import 'package:car_rental_app/src/config/constants/app_colors.dart';
 import 'package:car_rental_app/src/config/constants/app_textstyles.dart';
+import 'package:car_rental_app/src/config/constants/strings.dart';
+import 'package:car_rental_app/src/feature/rental/domain/entities/rental_item_entity.dart';
 import 'package:flutter/material.dart';
 
 class CarCard extends StatelessWidget {
-  const CarCard({super.key});
+  const CarCard({super.key, required this.rentalItem});
+
+  final RentalItemEntity rentalItem;
 
   @override
   Widget build(BuildContext context) {
@@ -21,34 +25,45 @@ class CarCard extends StatelessWidget {
             height: 200,
             decoration: BoxDecoration(
               color: AppColors.lGray.withOpacity(0.05),
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://files.porsche.com/filestore/galleryimagerwd/multimedia/none/jdp-2016-982-718-bo-gallery-exterior-01/zoom2/a4eb987d-c173-11ec-80ef-005056bbdc38;sJ;twebp/porsche-zoom2.webp',
-                ),
-                fit: BoxFit.cover,
-              ),
               borderRadius: BorderRadius.circular(10),
+            ),
+            child: Image.network(
+              rentalItem.imageUrls[0],
+              loadingBuilder: (context, child, loadingProgress) {
+                return Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: child,
+                  ),
+                );
+              },
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(height: 10),
-          Text('Porsche 718 Cayman S', style: AppTextstyles.md600),
-          Text('2019', style: AppTextstyles.smSecondary500),
+          Text('${rentalItem.brand} ${rentalItem.carName}',
+              style: AppTextstyles.md600),
+          Text(rentalItem.year, style: AppTextstyles.smSecondary500),
           Divider(
             height: 30,
             color: AppColors.lGray.withOpacity(0.1),
           ),
           Row(
             children: [
-              infoWidget('Fuel Type', 'Petrol'),
+              infoWidget('Fuel Type', rentalItem.fuel),
               const SizedBox(width: 30),
-              infoWidget('Transmission', 'Manual'),
+              infoWidget('Transmission', rentalItem.transmission),
               const Spacer(),
               RichText(
                 text: TextSpan(
-                  style: const TextStyle(fontFamily: 'Montserrat'),
+                  style: const TextStyle(fontFamily: montserrat),
                   children: [
                     TextSpan(
-                      text: '₹799',
+                      text: '₹${rentalItem.price}',
                       style: AppTextstyles.md600,
                     ),
                     TextSpan(
