@@ -58,7 +58,7 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
     return ColorPicker(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       color: widget.dialogSelectColor,
-      title: const Text('Color Picker', style: AppTextstyles.lg500),
+      title: Text('Color Picker', style: AppTextstyles.lg500),
       actionButtons: const ColorPickerActionButtons(
         okButton: true,
         closeButton: true,

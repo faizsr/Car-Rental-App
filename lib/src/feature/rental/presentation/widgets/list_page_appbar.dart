@@ -22,7 +22,7 @@ class ListPageAppbar extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Choose a Car', style: AppTextstyles.lg500),
+                 Text('Choose a Car', style: AppTextstyles.lg500),
                 const SizedBox(height: 5),
                 Row(
                   children: [

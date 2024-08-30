@@ -2,9 +2,7 @@ import 'package:car_rental_app/src/config/constants/app_textstyles.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({
-    super.key,
-  });
+  const CustomAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {

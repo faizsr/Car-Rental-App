@@ -22,7 +22,6 @@ class RentalItemController extends ChangeNotifier {
   Future<void> addNewRentalItem(RentalItemEntity rentalItem) async {
     isUpload = true;
     notifyListeners();
-    // await Future.delayed(const Duration(seconds: 5));
     await addNewRentalUsecase.call(rentalItem);
     isUpload = false;
     notifyListeners();
