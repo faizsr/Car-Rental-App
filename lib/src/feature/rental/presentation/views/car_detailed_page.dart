@@ -18,15 +18,13 @@ class CarDetailedPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         extendBody: true,
-        body: SizedBox(
-          height: size.height,
-          child: Column(
-            children: [
-              CourselImageContainer(rentalItem: rentalItem),
-              Container(
+        body: Column(
+          children: [
+            CourselImageContainer(rentalItem: rentalItem),
+            Expanded(
+              child: Container(
                 padding: const EdgeInsets.all(20),
                 width: size.width,
-                height: size.height - 390,
                 color: AppColors.lWhite,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,8 +55,8 @@ class CarDetailedPage extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomBookNowWidget(rentalItem: rentalItem),
       ),
