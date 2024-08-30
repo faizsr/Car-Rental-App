@@ -4,8 +4,13 @@ import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 
 class ColorPickerWidget extends StatefulWidget {
+  final void Function(Color) onColorChanged;
+  final Color dialogSelectColor;
+
   const ColorPickerWidget({
     super.key,
+    required this.onColorChanged,
+    required this.dialogSelectColor,
   });
 
   @override
@@ -13,8 +18,6 @@ class ColorPickerWidget extends StatefulWidget {
 }
 
 class _ColorPickerWidgetState extends State<ColorPickerWidget> {
-  Color dialogSelectColor = AppColors.lWhite;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,7 +33,8 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
           children: [
             Expanded(
               child: Text(
-                ColorTools.materialName(dialogSelectColor, withIndex: false),
+                ColorTools.materialName(widget.dialogSelectColor,
+                    withIndex: false),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -41,7 +45,7 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
                   color: AppColors.lGray.withOpacity(0.2),
                 ),
                 shape: BoxShape.circle,
-                color: dialogSelectColor,
+                color: widget.dialogSelectColor,
               ),
             )
           ],
@@ -53,23 +57,20 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
   Future<bool> colorPickerDialog() async {
     return ColorPicker(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-      color: dialogSelectColor,
+      color: widget.dialogSelectColor,
       title: const Text('Color Picker', style: AppTextstyles.lg500),
       actionButtons: const ColorPickerActionButtons(
         okButton: true,
         closeButton: true,
         dialogActionButtons: false,
       ),
-      onColorChanged: (Color color) {
-        setState(() => dialogSelectColor = color);
-      },
+      onColorChanged: widget.onColorChanged,
       width: 40,
       height: 40,
       borderRadius: 4,
       spacing: 5,
       runSpacing: 5,
       wheelDiameter: 155,
-      enableOpacity: true,
       showColorCode: true,
       pickersEnabled: const <ColorPickerType, bool>{
         ColorPickerType.wheel: true,

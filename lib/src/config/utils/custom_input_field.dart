@@ -2,18 +2,22 @@ import 'package:car_rental_app/src/config/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomInputField extends StatelessWidget {
-  const   CustomInputField({
+  const CustomInputField({
     super.key,
     required this.hintText,
     this.controller,
+    this.keyboardType,
   });
 
   final String hintText;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
+      controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
@@ -28,6 +32,12 @@ class CustomInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
+      validator: (value) {
+        if (value!.length < 2) {
+          return 'Invalid Entry';
+        }
+        return null;
+      },
     );
   }
 }
